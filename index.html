@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="alliefaun — women‑only boutique tours: Україна ↔ Північна Італія. Ніжність, безпека, стиль. Власниця: Олександра (Allie), українка, що мешкає в Італії." />
+  <title>alliefaun — UA ↔ Northern Italy</title>
+  <style>
+    :root{--bg:#0b0f14;--bg2:#0e1420;--card:#111827;--text:#f7f8fc;--muted:#b9c3d7;--rose:#f59ac3;--lilac:#c7b9ff;--r:20px;--gap:clamp(14px,2.2vw,26px);--max:1180px;--shadow:0 14px 40px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--text);font:400 16px/1.6 system-ui,-apple-system,Segoe UI,Inter,Arial,sans-serif;background:radial-gradient(900px 520px at 12% -8%,rgba(245,154,195,.22),transparent 60%),radial-gradient(900px 520px at 110% 0,rgba(199,185,255,.22),transparent 55%),var(--bg)}
+    a{color:var(--lilac);text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:0 var(--gap)}
+    header{position:sticky;top:0;z-index:20;backdrop-filter:saturate(160%) blur(10px)}
+    .bar{display:flex;align-items:center;justify-content:space-between;padding:12px var(--gap)}
+    .brand{display:flex;gap:.75rem;align-items:center;font-weight:800;letter-spacing:.2px}
+    .logo{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--rose),var(--lilac));display:grid;place-items:center;box-shadow:var(--shadow)}
+    .logo svg{width:20px;height:20px;fill:#fff}
+    nav{display:flex;gap:1rem}
+    .btn{display:inline-flex;align-items:center;gap:.6em;padding:.85em 1.05em;border-radius:999px;border:0;cursor:pointer;color:#0a0c10;background:linear-gradient(90deg,var(--rose),var(--lilac));box-shadow:0 10px 24px rgba(197,184,255,.35)}
+    .btn.ghost{background:transparent;color:var(--text);outline:1px solid rgba(255,255,255,.2)}
+
+    .hero{padding:calc(var(--gap)*2.2) 0}
+    .hero h1{font-family:ui-serif,Georgia,"Times New Roman",serif;font-weight:700;font-size:clamp(30px,4.8vw,56px);line-height:1.08;margin:.35em 0}
+    .lead{color:var(--muted);max-width:62ch}
+    .chip{display:inline-flex;gap:.5em;align-items:center;padding:.5em .9em;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16)}
+
+    .section{padding:calc(var(--gap)*2) 0}
+    .deck{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--gap);align-items:center}
+
+    .rich{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border-radius:var(--r);padding:20px;border:1px solid rgba(255,255,255,.14);box-shadow:var(--shadow)}
+    .rich:before{content:"";position:absolute;inset:0;padding:1px;border-radius:calc(var(--r) + 1px);background:linear-gradient(135deg,rgba(245,154,195,.7),rgba(199,185,255,.7));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+    .tour{display:flex;flex-direction:column;border-radius:22px;overflow:hidden;background:var(--card);border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+    .tour .img{position:relative}
+    .tour .img img{width:100%;height:100%;display:block;object-fit:cover;aspect-ratio:16/10;border:0}
+    .tour .img:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.18),rgba(0,0,0,.04))}
+    .tour .body{padding:16px}
+    .kicker{color:var(--muted);font-size:.95rem}
+
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+
+    blockquote{margin:0;padding:18px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);font-style:italic;color:#eae6ff}
+
+    footer{border-top:1px solid rgba(255,255,255,.12);padding:22px 0;color:var(--muted)}
+
+    @keyframes floaty{from{transform:translateY(0)}50%{transform:translateY(-6px)}to{transform:translateY(0)}}
+    .floaty{animation:floaty 6s ease-in-out infinite}
+
+    @media (max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}.deck{grid-template-columns:1fr}}
+    @media (max-width:760px){.grid,.split{grid-template-columns:1fr 1fr}}
+    @media (max-width:540px){.grid,.split{grid-template-columns:1fr}nav{display:none}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar container">
+      <div class="brand"><span class="logo floaty"><svg viewBox="0 0 24 24"><path d="M12 2c5.5 0 10 4.5 10 10 0 3-1.3 5.7-3.4 7.6-.6.6-1.6.5-2.1-.1l-2.9-3.8c-.4-.5-.3-1.2.1-1.6A3.5 3.5 0 1 0 8 12c0 .7.2 1.4.6 2 .4.5.4 1.2.1 1.7l-2.9 3.8c-.5.7-1.5.7-2.1.1A10 10 0 0 1 12 2Z"/></svg></span> alliefaun</div>
+      <nav><a href="#tours">Маршрути</a><a href="#about">Про нас</a><a href="#safety">Безпека</a><a class="btn" href="#book">Забронювати</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <span class="chip">🌸 Women‑only · Women‑led</span>
+      <h1>Україна ↔ Північна Італія — подорожі, що народжують емоцію і залишаються теплим спогадом</h1>
+      <p class="lead">alliefaun — це бутик‑консьерж і короткі кураторські маршрути, створені українкою <strong>Олександрою (Allie)</strong>, яка мешкає в Італії. Ми зʼєднуємо дві культури й допомагаємо побачити красу у деталях: від львівських кавʼярень до каналів Навільї та озера Комо.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+        <a class="btn" href="#tours">Обрати маршрут</a>
+        <a class="btn ghost" target="_blank" rel="noopener" href="https://instagram.com/alliefaun">Instagram</a>
+      </div>
+    </section>
+
+    <section id="about" class="section container">
+      <div class="deck">
+        <article class="rich">
+          <h2 style="margin-top:0">Наш підхід</h2>
+          <p>Ми подорожуємо камерно і без поспіху. Перш ніж їхати, уточнюємо очікування: темп, бюджет, бажаний «настрій міста». Далі складаємо сценарій з мʼякими переходами, де поруч із must‑see завжди є «місця сили» — маленькі майстерні, локальні кавʼярні, винні бари й точки, про які рідко пишуть гіди.</p>
+          <p>Маршрути живуть емоцією: аромат еспресо на Навільї, тиша карпатського ранку, сонячні дворики Одеси, львівський дощ під парасолькою. Ми не поспішаємо — зате встигаємо відчути.</p>
+        </article>
+        <article class="rich">
+          <h2 style="margin-top:0">Хто ми</h2>
+          <p>alliefaun — авторський проєкт Олександри (Allie), українки, що мешкає в Італії і тонко відчуває ритм Півночі: Мілан, Турін, Комо, Верона. Ми працюємо для дівчат, які цінують турботу, естетику і безпеку; супроводжуємо приватні поїздки (1–4 учасниці) та малі групи.</p>
+          <p>Ми на звʼязку у <a target="_blank" rel="noopener" href="https://instagram.com/alliefaun">Instagram @alliefaun</a> — там живі історії, нотатки з місць і відкриті дати. Напишіть нам, і ми оберемо маршрут під ваш настрій.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="tours" class="section container">
+      <h2 style="margin-top:0">Популярні маршрути</h2>
+      <p class="kicker">Вибір для першого знайомства — від київського модернізму до аперитиво на озері Комо. Фото — Unsplash CDN; якщо не видно, оновіть сторінку.</p>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section id="safety" class="section container">
+      <div class="split">
+        <article class="rich">
+          <h2 style="margin-top:0">Безпека та етика</h2>
+          <p>Малі групи, зрозумілі правила і продумана логістика. Перед стартом погоджуємо ритм і очікування, ділимося лінком‑трекером з довіреною особою та мапою безпечних точок. Партнерки‑провідниці проходять відбір, етичний бриф та базовий first‑aid.</p>
+          <p>Під час подорожі ми на звʼязку онлайн і телефоном 24/7. Турбота та комфорт — не «опція», а основа формату.</p>
+        </article>
+        <article class="rich">
+          <h2 style="margin-top:0">Відгуки</h2>
+          <blockquote>«Темп — саме той, що потрібен, щоб по‑справжньому закохатися у місто. Було відчуття, що подруга веде мене своїми улюбленими стежками».</blockquote>
+          <p class="muted" style="margin-top:10px">— Марія, Київ → Мілан</p>
+          <blockquote style="margin-top:12px">«Дбайливо, красиво і без жодної метушні. Найтепліші спогади — з маленьких деталей, які Allie вміє знайти».</blockquote>
+          <p class="muted" style="margin-top:10px">— Олена, Львів → Верона</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="book" class="section container">
+      <div class="split">
+        <form onsubmit="send(event)" class="rich">
+          <h2 style="margin-top:0">Запит на маршрут</h2>
+          <p class="kicker">Розкажіть кілька штрихів — ми надішлемо 2–3 пропозиції під ваш настрій.</p>
+          <input name="name" placeholder="Імʼя" required style="width:100%;padding:.8em;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:var(--text)">
+          <input name="contact" placeholder="Telegram або телефон" required style="width:100%;margin-top:10px;padding:.8em;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:var(--text)">
+          <textarea name="wish" rows="3" placeholder="Бажання: місто, ритм, бюджет" style="width:100%;margin-top:10px;padding:.8em;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:var(--text)"></textarea>
+          <button class="btn" style="margin-top:12px">Надіслати</button>
+          <p id="msg" class="muted" style="margin-top:8px"></p>
+        </form>
+        <article class="rich">
+          <h2 style="margin-top:0">Контакти</h2>
+          <p>Instagram — <a target="_blank" rel="noopener" href="https://instagram.com/alliefaun">@alliefaun</a>. Публікуємо сторіз з місць, ідеї на вихідні і нові дати.</p>
+          <p>Старт зазвичай — Київ або Львів; в Італії — Мілан чи Турін. Гнучко підлаштовуємося під ваші вильоти і графік.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container"><p class="muted">© <span id="y"></span> alliefaun — women‑only boutique tours (UA ↔ IT). Фото: Unsplash.</p></footer>
+
+  <script>
+    // Прямий CDN Unsplash (без редиректів) + <img loading="lazy">, щоб фото точно відображались у превʼю
+    const U = id => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1200&h=800&q=80`;
+    const tours=[
+      {city:'Kyiv',        region:'UA', title:'Київ модерністський: архітектура та кавʼярні', days:1, price:49,  img:U('UDXY2qW4tCo') , text:'Маршрут про затишні дворики Подолу, модерністські фасади і каву з видом на Дніпро. Повільний темп, зупинки для фото і короткі історії про місто.'},
+      {city:'Lviv',        region:'UA', title:'Львів смаку: гастро‑бар та майстерні',         days:1, price:59,  img:U('UYT8DfmrsiE') , text:'Ранкова кава на Ринку, майстерня кераміки, маленький винний бар і пішохідні пасажі, де дощ звучить особливо красиво.'},
+      {city:'Carpathians', region:'UA', title:'Карпати: ретрит вихідного дня',               days:2, price:129, img:U('Sojly4YWOEo') , text:'Тиша лісу, ранкова йога і місцева кухня. Проживання у камерному шале, короткі хайки та вечірній вогник.'},
+      {city:'Odesa',       region:'UA', title:'Одеса: дворики, легенди й море',               days:1, price:69,  img:U('b3Hnpf0dEJs') , text:'Сонячні двори, старі вивіски, аперитив на узбережжі. Легка прогулянка без підйомів і метушні.'},
+      {city:'Milan',       region:'IT', title:'Мілан: мода, Навільї та дизайн',               days:2, price:189, img:U('yjX0FGs9mMc') , text:'Субʼєктивний Мілан від Allie: канали Навільї, шоуруми молодих дизайнерів, паста у місцевому бістро і, звісно, еспресо.'},
+      {city:'Turin',       region:'IT', title:'Турін: кафе, ринки та історії',                days:2, price:169, img:U('ftb41uoXhvQ') , text:'Пʼємонтські десерти, історичні кавʼярні і панорама Моле Антонелліана. Місто неспішних бульварів і гарної архітектури.'},
+      {city:'Como',        region:'IT', title:'Озеро Комо: вілли, човник, аперитиво',         days:1, price:149, img:U('0lWTd1FHeGA') , text:'Прогулянка вздовж озера, човник між містечками і садові тераси історичних вілл. Фінал — аперитиво з видом на воду.'},
+      {city:'Verona',      region:'IT', title:'Верона & Гарда: ремесла і винні бари',         days:1, price:159, img:U('kpw8LQDbiIg') , text:'Камʼяні мости, майстерні і невеликі енотекі біля Адидже. Атмосфера для неквапної розмови і фото на плівку.'}
+    ];
+
+    const grid=document.getElementById('grid');
+    grid.innerHTML=tours.map(x=>`
+      <article class="tour">
+        <div class="img">
+          <img src="${x.img}" loading="lazy" decoding="async" alt="${x.city}" onerror="this.src='https://picsum.photos/seed/'+encodeURIComponent('${x.city}')+'/1200/800'">
+        </div>
+        <div class="body">
+          <h3 style="margin:.2em 0 .3em">${x.title}</h3>
+          <p class="kicker">📍 ${x.region==='UA'?'Україна':'Північна Італія'} · ${x.city} · 🗓️ ${x.days} d · 💶 €${x.price}</p>
+          <p class="kicker">${x.text}</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+            <a class="btn" href="#book">Запит</a>
+            <a class="btn ghost" href="https://instagram.com/alliefaun" target="_blank" rel="noopener">Instagram Allie</a>
+          </div>
+        </div>
+      </article>`).join('');
+
+    function send(e){e.preventDefault();const f=new FormData(e.target);document.getElementById('msg').textContent=`Дякуємо, ${f.get('name')}! Напишемо у: ${f.get('contact')}.`;e.target.reset();}
+    document.getElementById('y').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
