@@ -34,7 +34,7 @@
 
     .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
     .tour{display:flex;flex-direction:column;border-radius:22px;overflow:hidden;background:var(--card);border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
-    .tour .img{position:relative}
+    .tour .img{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,rgba(245,154,195,.15),rgba(199,185,255,.15));border-bottom:1px solid rgba(255,255,255,.08)}
     .tour .img img{width:100%;height:100%;display:block;object-fit:cover;aspect-ratio:16/10;border:0}
     .tour .img:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.18),rgba(0,0,0,.04))}
     .tour .body{padding:16px}
@@ -90,7 +90,7 @@
 
     <section id="tours" class="section container">
       <h2 style="margin-top:0">Популярні маршрути</h2>
-      <p class="kicker">Вибір для першого знайомства — від київського модернізму до аперитиво на озері Комо. Фото — Unsplash CDN; якщо не видно, оновіть сторінку.</p>
+      <p class="kicker">Вибір для першого знайомства — від київського модернізму до аперитиво на озері Комо. Фото підтягуються автоматично з Wikipedia/Wikimedia (стабільні джерела).</p>
       <div class="grid" id="grid"></div>
     </section>
 
@@ -134,24 +134,31 @@
   <footer class="container"><p class="muted">© <span id="y"></span> alliefaun — women‑only boutique tours (UA ↔ IT). Фото: Unsplash.</p></footer>
 
   <script>
-    // Прямий CDN Unsplash (без редиректів) + <img loading="lazy">, щоб фото точно відображались у превʼю
-    const U = id => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1200&h=800&q=80`;
+    // Загрузка фото через Wikipedia REST API (оригинальные изображения с Wikimedia)
+    async function wikiImage(title){
+      try{
+        const r = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`);
+        const j = await r.json();
+        return (j.originalimage && j.originalimage.source) || (j.thumbnail && j.thumbnail.source) || '';
+      }catch(e){ return ''; }
+    }
+
     const tours=[
-      {city:'Kyiv',        region:'UA', title:'Київ модерністський: архітектура та кавʼярні', days:1, price:49,  img:U('UDXY2qW4tCo') , text:'Маршрут про затишні дворики Подолу, модерністські фасади і каву з видом на Дніпро. Повільний темп, зупинки для фото і короткі історії про місто.'},
-      {city:'Lviv',        region:'UA', title:'Львів смаку: гастро‑бар та майстерні',         days:1, price:59,  img:U('UYT8DfmrsiE') , text:'Ранкова кава на Ринку, майстерня кераміки, маленький винний бар і пішохідні пасажі, де дощ звучить особливо красиво.'},
-      {city:'Carpathians', region:'UA', title:'Карпати: ретрит вихідного дня',               days:2, price:129, img:U('Sojly4YWOEo') , text:'Тиша лісу, ранкова йога і місцева кухня. Проживання у камерному шале, короткі хайки та вечірній вогник.'},
-      {city:'Odesa',       region:'UA', title:'Одеса: дворики, легенди й море',               days:1, price:69,  img:U('b3Hnpf0dEJs') , text:'Сонячні двори, старі вивіски, аперитив на узбережжі. Легка прогулянка без підйомів і метушні.'},
-      {city:'Milan',       region:'IT', title:'Мілан: мода, Навільї та дизайн',               days:2, price:189, img:U('yjX0FGs9mMc') , text:'Субʼєктивний Мілан від Allie: канали Навільї, шоуруми молодих дизайнерів, паста у місцевому бістро і, звісно, еспресо.'},
-      {city:'Turin',       region:'IT', title:'Турін: кафе, ринки та історії',                days:2, price:169, img:U('ftb41uoXhvQ') , text:'Пʼємонтські десерти, історичні кавʼярні і панорама Моле Антонелліана. Місто неспішних бульварів і гарної архітектури.'},
-      {city:'Como',        region:'IT', title:'Озеро Комо: вілли, човник, аперитиво',         days:1, price:149, img:U('0lWTd1FHeGA') , text:'Прогулянка вздовж озера, човник між містечками і садові тераси історичних вілл. Фінал — аперитиво з видом на воду.'},
-      {city:'Verona',      region:'IT', title:'Верона & Гарда: ремесла і винні бари',         days:1, price:159, img:U('kpw8LQDbiIg') , text:'Камʼяні мости, майстерні і невеликі енотекі біля Адидже. Атмосфера для неквапної розмови і фото на плівку.'}
+      {city:'Kyiv',        region:'UA', title:'Київ модерністський: архітектура та кавʼярні', days:1, price:49,  wiki:'Kyiv',                  text:'Маршрут про затишні дворики Подолу, модерністські фасади і каву з видом на Дніпро. Повільний темп, зупинки для фото і короткі історії про місто.'},
+      {city:'Lviv',        region:'UA', title:'Львів смаку: гастро‑бар та майстерні',         days:1, price:59,  wiki:'Lviv',                  text:'Ранкова кава на Ринку, майстерня кераміки, маленький винний бар і пішохідні пасажі, де дощ звучить особливо красиво.'},
+      {city:'Carpathians', region:'UA', title:'Карпати: ретрит вихідного дня',               days:2, price:129, wiki:'Carpathian Mountains',    text:'Тиша лісу, ранкова йога і місцева кухня. Проживання у камерному шале, короткі хайки та вечірній вогник.'},
+      {city:'Odesa',       region:'UA', title:'Одеса: дворики, легенди й море',               days:1, price:69,  wiki:'Odesa',                  text:'Сонячні двори, старі вивіски, аперитив на узбережжі. Легка прогулянка без підйомів і метушні.'},
+      {city:'Milan',       region:'IT', title:'Мілан: мода, Навільї та дизайн',               days:2, price:189, wiki:'Navigli',                text:'Субʼєктивний Мілан від Allie: канали Навільї, шоуруми молодих дизайнерів, паста у місцевому бістро і, звісно, еспресо.'},
+      {city:'Turin',       region:'IT', title:'Турін: кафе, ринки та історії',                days:2, price:169, wiki:'Turin',                  text:'Пʼємонтські десерти, історичні кавʼярні і панорама Моле Антонелліана. Місто неспішних бульварів і гарної архітектури.'},
+      {city:'Como',        region:'IT', title:'Озеро Комо: вілли, човник, аперитиво',         days:1, price:149, wiki:'Lake Como',              text:'Прогулянка вздовж озера, човник між містечками і садові тераси історичних вілл. Фінал — аперитиво з видом на воду.'},
+      {city:'Verona',      region:'IT', title:'Верона & Гарда: ремесла і винні бари',         days:1, price:159, wiki:'Verona',                 text:'Камʼяні мости, майстерні і невеликі енотекі біля Адидже. Атмосфера для неквапної розмови і фото на плівку.'}
     ];
 
     const grid=document.getElementById('grid');
-    grid.innerHTML=tours.map(x=>`
+    grid.innerHTML=tours.map((x,i)=>`
       <article class="tour">
         <div class="img">
-          <img src="${x.img}" loading="lazy" decoding="async" alt="${x.city}" onerror="this.src='https://picsum.photos/seed/'+encodeURIComponent('${x.city}')+'/1200/800'">
+          <img id="img-${i}" alt="${x.city}" loading="lazy" decoding="async" referrerpolicy="no-referrer" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Crect width='100%25' height='100%25' fill='%23111827'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%239aa3b2' font-family='system-ui' font-size='28'%3E${encodeURIComponent(x.city)}%3C/text%3E%3C/svg%3E">
         </div>
         <div class="body">
           <h3 style="margin:.2em 0 .3em">${x.title}</h3>
@@ -163,6 +170,15 @@
           </div>
         </div>
       </article>`).join('');
+
+    // Асинхронно подтягиваем изображения
+    (async ()=>{
+      const imgs = await Promise.all(tours.map(t => wikiImage(t.wiki)));
+      imgs.forEach((url, i)=>{
+        const el = document.getElementById(`img-${i}`);
+        if(url){ el.src = url; }
+      });
+    })();
 
     function send(e){e.preventDefault();const f=new FormData(e.target);document.getElementById('msg').textContent=`Дякуємо, ${f.get('name')}! Напишемо у: ${f.get('contact')}.`;e.target.reset();}
     document.getElementById('y').textContent=new Date().getFullYear();
